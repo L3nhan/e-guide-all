@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const kiemtra = () => {
+            //1. Fullname
+            var sName   = document.getElementById("txtName").value;
+            var reName  = /^[A-Za-z0-9 ]+$/;     //(1)
+            if(!reName.test(sName)){     //(2) reName.test(sName) == false
+                alert("Full name is required!");
+                document.getElementById("txtName").focus();     //selected()
+                return false;
+            }
+
+            //2. Email
+            var sMail   = document.getElementById("txtMail").value;
+            var reMail = /^\w+[@]\w+[.]\w{3}([.]\w{2})?$/;   
+            // var reMail = /^\w+[@]\w+[.]\w+([.]\w+)?$/;          //abc123@test.com
+            if(!reMail.test(sMail)){   
+                alert("Email is incorrect!");
+                document.getElementById("txtMail").focus();     //selected()
+                return false;
+            }
+
+            //3. Phone
+            var sPhone  = document.getElementById("txtPhone").value;
+            var rePhone = /^\d{8,12}$/; 
+            if(!rePhone.test(sPhone)){   
+                alert("Phone is incorrect!");
+                document.getElementById("txtPhone").focus();     //selected()
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="https://www.google.com" onsubmit="return kiemtra();">
+        <div>Fullname: <input id="txtName" placeholder="Enter Fullname..." autofocus></div>
+        <div>Email: <input id="txtMail" placeholder="Enter Email..."></div>
+        <div>Phone: <input id="txtPhone" placeholder="Enter Phone number..."></div>
+        <div>
+            <button>Register</button>
+        </div>
+    </form>
+</body>
+</html>
+<!--
+    ^   : Kiểm tra ký tự nhập đầu tiên
+    $   : Kiểm tra ký tự nhập cuối cùng
+    []  : Hằng
+    [A-Za-z] : Alphabet
+    [A-Za-z0-9]: Alphanumeric
+    [0-9] : Ditgit
+    *   : Ít nhất từ 0    
+    +   : It nhất từ 1
+    \w  : Alphanumeric
+    \d  : Digit
+    ?   : Optional
+    {m, n}: m -> min, n -> max
+    {m} : fixed
+    {m,}: from min
+-->
